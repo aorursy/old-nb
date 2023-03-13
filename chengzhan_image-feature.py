@@ -383,4 +383,3 @@ out_df = out_df[['listing_id', 'high', 'low', 'medium']]
 out_df.to_csv("z09submission01.csv", index=False)
 
 print('Done...',(time.time()-start_time)/60)
-!cat z09submission01.csv

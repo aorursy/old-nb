@@ -1,8 +1,3 @@
-
-
-
-
-
 import numpy as np # linear algebra
 
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
@@ -80,8 +75,6 @@ elif sz == 128:
 
     MASKS = '../input/pneumotorax128/data128/data128/masks'
 Path('/tmp/.cache/torch/checkpoints/').mkdir(exist_ok=True,parents=True)
-
-!cp '../input/resnet34/resnet34.pth' '/tmp/.cache/torch/checkpoints/resnet34-333f7ec4.pth'
 
 print(os.listdir("/tmp/"))
 
@@ -221,7 +214,7 @@ plt.plot(thrs, dices)
 
 plt.vlines(x=best_thr, ymin=dices.min(), ymax=dices.max())
 
-plt.text(best_thr+0.03, best_dice-0.15, f'DICE = {best_dice:.2f} \nThreshold = {best_thr:.2f}', fontsize=14);
+plt.text(best_thr+0.03, best_dice-0.15, f'DICE = {best_dice:.2f} \nThreshold = {best_thr:.2f}', fontsize=14)
 
 plt.show()
 rows = 20

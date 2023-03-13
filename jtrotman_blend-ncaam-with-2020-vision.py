@@ -1133,5 +1133,3 @@ ensemble = (sums / count)
 count, score_sub(ensemble)
 show_years(expand_sub(ensemble.reset_index()), f'{TAG}_ensemble')
 ensemble.to_csv(f'{TAG}_blend.csv')
-!7z a -bd -mmt4 {OUTPUT_ZIP} {PNG_DIR}/*.png
-!find /kaggle > file_list.txt

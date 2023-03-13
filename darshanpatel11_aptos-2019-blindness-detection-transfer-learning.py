@@ -66,15 +66,7 @@ data = ImageDataBunch.from_df(df=df_train,
 # !rm -rf model
 
 # !rm -rf ../model
-!mkdir /tmp
 
-!mkdir /tmp/.cache/
-
-!mkdir /tmp/.cache/torch/
-
-!mkdir /tmp/.cache/torch/checkpoints
-
-!cp ../input/resnet34fastai/resnet34.pth /tmp/.cache/torch/checkpoints/resnet34-333f7ec4.pth
 os.mkdir('../model')
 
 os.listdir('..')

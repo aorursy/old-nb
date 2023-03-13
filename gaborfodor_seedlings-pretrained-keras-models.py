@@ -21,7 +21,6 @@ if not os.path.exists(cache_dir):
 models_dir = os.path.join(cache_dir, 'models')
 if not os.path.exists(models_dir):
     os.makedirs(models_dir)
-!cp ../input/keras-pretrained-models/xception* ~/.keras/models/
 CATEGORIES = ['Black-grass', 'Charlock', 'Cleavers', 'Common Chickweed', 'Common wheat', 'Fat Hen', 'Loose Silky-bent',
               'Maize', 'Scentless Mayweed', 'Shepherds Purse', 'Small-flowered Cranesbill', 'Sugar beet']
 NUM_CATEGORIES = len(CATEGORIES)
@@ -68,7 +67,7 @@ for category_id, category in enumerate(CATEGORIES):
         if i % NUM_CATEGORIES == NUM_CATEGORIES - 1:
             ax.text(250, 112, filepath.split('/')[1], verticalalignment='center')
         i += 1
-plt.show();
+plt.show()
 np.random.seed(seed=SEED)
 rnd = np.random.random(len(train))
 train_idx = rnd < 0.8

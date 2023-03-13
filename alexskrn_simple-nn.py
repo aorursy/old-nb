@@ -29,7 +29,6 @@ TEST_DATA_FILE = 'test.csv'
 SUBMISSION_FILE = 'submission.csv'
 
 RANDOM_STATE = 0
-! ls ../input/traininglstmcheckpoints2
 train_data = pd.read_csv(os.path.join(DATA_DIR, TRAIN_DATA_FILE)).fillna('')
 test_data = pd.read_csv(os.path.join(DATA_DIR, TEST_DATA_FILE)).fillna('')
 corpus = list(train_data['text']) 
@@ -59,9 +58,9 @@ questions_train = list(train_data['sentiment'])
 starts = []
 ends = []
 for text, selected_text in zip(train_data['text'], train_data['selected_text']):
-  start = text.find(selected_text)
-  starts.append(start)
-  ends.append(start + len(selected_text))
+    start = text.find(selected_text)
+    starts.append(start)
+    ends.append(start + len(selected_text))
 
 starts = np.array(starts)  
 ends = np.array(ends) 

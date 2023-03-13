@@ -18,8 +18,6 @@ from zipfile import ZipFile
 TRAIN_PATH = "../input/data-science-bowl-2018/stage1_train.zip"
 
 TEST_PATH = "../input/data-science-bowl-2018/stage1_test.zip"
-!mkdir /kaggle/working/train
-!mkdir /kaggle/working/test
 with ZipFile("../input/data-science-bowl-2018/stage1_train.zip") as z:
 
     z.extractall("/kaggle/working/train/")

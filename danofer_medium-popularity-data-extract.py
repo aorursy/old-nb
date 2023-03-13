@@ -23,7 +23,6 @@ sns.palplot(color)
 
 import os
 PATH = "../input"
-!du -l ../input/*
 def read_json_line(line=None):
     result = None
     try:        

@@ -12,7 +12,6 @@ import os
 # print(os.listdir("../input"))
 
 # Any results you write to the current directory are saved as output.
-!pwd
 os.chdir("/kaggle/working")
 
 if True:
@@ -486,7 +485,6 @@ print(model.summary())
 
 # preds = model.predict(X_test)
 # Note that we cannot use too large a batch size! 64*32*512*512 is just over 5gb!!
-!pwd
 LIMIT_STEPS = None
 model.fit_generator(generator=training_generator, epochs=10,
                     steps_per_epoch=LIMIT_STEPS , validation_data=valid_generator,  verbose = 1, 
@@ -495,7 +493,6 @@ model.fit_generator(generator=training_generator, epochs=10,
 # model.save('my_model_nov26.h5')
 
 model.save('my_model_nov30_hard_sig.h5')
-!pwd
 from keras.models import load_model
 
 model = load_model('../input/csc420-pea-working-model-evaluate-generator/my_model_nov26.h5')

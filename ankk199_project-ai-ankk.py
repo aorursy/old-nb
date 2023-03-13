@@ -51,9 +51,6 @@ IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
 
 FILE_PATH = '/kaggle/input/dogs-vs-cats-redux-kernels-edition/'
-!rm -rf "./train"
-
-!unzip -q "/kaggle/input/dogs-vs-cats-redux-kernels-edition/train.zip"
 # Preparing the data
 
 filenames = os.listdir("./train")
@@ -169,42 +166,9 @@ validation_generator = validation_datagen.flow_from_dataframe(
 class ConvBlock(tf.keras.Model):
 
     def __init__(self, filters, kernel, strides, padding):
-
-        '''
-
-        Khởi tạo Convolution Block với các tham số đầu vào
-
-        
-
-        Parameters
-
-        ----------
-
-        filters: int
-
-            số lượng filter
-
-        kernel: int
-
-            kích thước kernel
-
-        strides: int
-
-            stride của convolution layer
-
-        padding: str
-
-            Loại padding của convolution layer
-
-        
-
-        '''
-
         
 
         super(ConvBlock, self).__init__()
-
-        # Tạo layer Conv2D
 
         self.cnn = tf.keras.layers.Conv2D(filters, kernel,  strides=strides,
 
@@ -217,9 +181,6 @@ class ConvBlock(tf.keras.Model):
                                           padding=padding)
 
 
-
-        # Tạo layer MaxPool2D
-
         self.pool = tf.keras.layers.MaxPool2D((2, 2))
 
         
@@ -227,32 +188,6 @@ class ConvBlock(tf.keras.Model):
         
 
     def call(self, inputs):
-
-        '''
-
-        Hàm này sẽ được gọi trong quá trình forwarding của mạng
-
-        
-
-        Parameters
-
-        ----------
-
-        inputs: tensor đầu vào
-
-        
-
-        Returns
-
-        -------
-
-        tensor
-
-            giá trị đầu ra của mạng
-
-        '''
-
-        
 
         x = inputs
 
@@ -387,13 +322,7 @@ history = None
 
 with tf.device(device):
 
-    # Khởi tạo model
-
     model = CNN(num_classes)
-
-    
-
-    # Tạo callback để lưu model có accuracy trên tập validation tốt nhất
 
     mcp = tf.keras.callbacks.ModelCheckpoint("model_CNN_v1.h5", monitor="val_accuracy", verbose=2,
 
@@ -461,9 +390,6 @@ legend = plt.legend(loc='best', shadow=True)
 plt.tight_layout()
 
 plt.show()
-!rm -rf "./test"
-
-!unzip -q "/kaggle/input/dogs-vs-cats-redux-kernels-edition/test.zip"
 test_filenames = os.listdir("./test")
 
 test_df = pd.DataFrame({
@@ -498,21 +424,14 @@ test_generator = test_gen.flow_from_dataframe(
 
 model = CNN(num_classes)
 
-
-
-# Thiết lập kích thước input cho model
-
 dummy_x = tf.zeros((1, 224, 224, 3))
 
 model._set_inputs(dummy_x)
 
 
-
-# Load model đã lưu trước đó trong quá trình huấn luyện
-
 model.load_weights('model_CNN_v1.h5')
 
-print("Model đã được load")
+print("Model load")
 # Save model
 
 model.save("DogVsCatModelv2")
@@ -536,7 +455,6 @@ submission_df['label'] = submission_df['category']
 submission_df.drop(['filename', 'category'], axis=1, inplace=True)
 
 submission_df.to_csv('submission.csv', index=False)
-# Dọn dẹp các file hình
 
 import shutil
 

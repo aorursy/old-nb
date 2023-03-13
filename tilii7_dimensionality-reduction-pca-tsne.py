@@ -14,8 +14,6 @@ with warnings.catch_warnings():
 
     import matplotlib.pyplot as plt
 
-    %matplotlib inline
-
     import matplotlib.cm as cm
 
     from sklearn.decomposition import PCA

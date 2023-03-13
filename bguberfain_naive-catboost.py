@@ -182,4 +182,3 @@ df_test['price'] = np.exp(df_test['price_log'])-1
 
 
 df_test[['price']].round(5).to_csv('submission.csv', index=True)
-!head submission.csv

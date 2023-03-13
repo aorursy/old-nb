@@ -451,8 +451,7 @@ X_test = np.array(pad_sequences(X_test, max_seq_length))
 
 print('The X_train,X_valid,X_test shape respectively is {}-{}-{}'.format(X_train.shape,X_valid.shape,X_test.shape))
 train,valid,test=make_data()
-!wget http://nlp.stanford.edu/data/glove.6B.zip
-!unzip glove*.zip
+
 embeddings_index = {}
 
 f = open(os.path.join(os.getcwd(), 'glove.6B.{}d.txt'.format(str(embedding_dim))))

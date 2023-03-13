@@ -70,7 +70,6 @@ if not os.path.exists(cache_dir):
 models_dir = os.path.join(cache_dir, 'models')
 if not os.path.exists(models_dir):
     os.makedirs(models_dir)
-!cp ../input/resnet34/resnet34.pth /tmp/.torch/models/resnet34-333f7ec4.pth
 gc.collect()
 tfms = tfms_from_model(resnet34, sz, aug_tfms=transforms_side_on, max_zoom=1.1)
 arch=resnet34
@@ -99,7 +98,6 @@ probs = np.exp(temp[:,1])
 probs[:10]
 os.listdir(f'{PATH}test')[:4]
 submission = pd.DataFrame({'id':os.listdir(f'{PATH}test'), 'label':probs})
-! rm -rf ../working/dogcats/
 submission['id'] = submission['id'].map(lambda x: x.split('.')[0])
 submission['id'] = submission['id'].astype(int)
 submission = submission.sort_values('id')

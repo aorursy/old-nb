@@ -5,7 +5,6 @@ if not os.path.exists(cache_dir):
 models_dir = os.path.join(cache_dir, 'models')
 if not os.path.exists(models_dir):
     os.makedirs(models_dir)
-!cp ../input/vgg16/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5 ~/.keras/models/
 print(os.listdir('../input/plant-seedlings-classification/train/'))
 import fnmatch
 import os

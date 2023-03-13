@@ -51,12 +51,6 @@ print(os.listdir("../input/fastai-pretrained-models"))
 
 PATH = "../input/aptos2019-blindness-detection"
 
-!mkdir -p /tmp/.cache/torch/checkpoints/
-
-!cp ../input/fastai-pretrained-models/resnet101-5d3b4d8f.pth /tmp/.cache/torch/checkpoints/resnet101-5d3b4d8f.pth
-SIZE=224
-
-
 
 train_df=pd.read_csv(PATH+'/train.csv')
 

@@ -202,7 +202,6 @@ with open('fasttext-embedding-train.txt', 'w', encoding='utf-8') as target:
     for text in texts_train:
 
         target.write('__label__0\t{0}\n'.format(text.strip()))
-!fasttext skipgram -input fasttext-embedding-train.txt -output embedding-model >nul 2>&1
 train_texts_tokenized = map(wordpunct_tokenize, train['comment_text'])
 
 test_texts_tokenized = map(wordpunct_tokenize, train['comment_text'])
@@ -218,7 +217,6 @@ with open("fasttext-words.txt", "w", encoding="utf-8") as target:
     for word in text_tokens:
 
         target.write("{0}\n".format(word.strip()))
-!fasttext print-word-vectors embedding-model.bin < fasttext-words.txt > fasttext-vectors.txt
 embedding_matrix = np.zeros([len(text_tokens) + 1, 100])
 
 word2index = {}

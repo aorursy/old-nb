@@ -124,4 +124,3 @@ for it in tqdm(pre):
 df['labels'] = p
 df.head()
 df.to_csv('sub.csv', index=False)
-!cat sub.csv

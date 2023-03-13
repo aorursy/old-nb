@@ -36,8 +36,8 @@ train = pd.DataFrame(train, columns=['file', 'category_id', 'category'])
 train.shape
 train.head(5)
 import seaborn as sns
-sns.countplot(x='category',data=train).set_title('distribution of different category');
-plt.xticks(rotation=90);
+sns.countplot(x='category',data=train).set_title('distribution of different category')
+plt.xticks(rotation=90)
 test = []
 for file in os.listdir(test_dir):
     test.append(['test/{}'.format(file), file])
@@ -98,7 +98,6 @@ if not os.path.exists(cache_dir):
 models_dir = os.path.join(cache_dir, 'models')
 if not os.path.exists(models_dir):
     os.makedirs(models_dir)
-!cp ../input/keras-pretrained-models/vgg* ~/.keras/models/
 from keras import applications
 model = applications.VGG16(weights = "imagenet", include_top=False, input_shape = (224, 224, 3))
 model.summary()

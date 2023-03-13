@@ -4,16 +4,11 @@ import pandas as pd
 from sklearn.cluster import MiniBatchKMeans
 import matplotlib.pyplot as plt
 # clone darknet
-!git clone https://github.com/pjreddie/darknet
 # lets look at the default anchor boxes in yolov3-tiny.cfg (6 anchor boxes)
 # and yolov3.cfg (9 anchor boxes) and the associated input image sizes
-!cp darknet/cfg/yolov3-tiny.cfg .
-!grep -E 'width|height|anchors' yolov3-tiny.cfg
 
 print ("---------")
 
-!cp darknet/cfg/yolov3.cfg .
-!grep -E 'width|height|anchors' yolov3.cfg
 # so the default configuration of yolov3-tiny is 416x416, and the one for yolov3 is 608x608
 # yolov3 uses three anchor boxes per 'scale.'  Predictions are first done at the input scale.
 # then the network upsamples the inputs to twice the resolution and makes predictions again.
@@ -23,7 +18,6 @@ print ("---------")
 # V2: input width and height of 608 (19x19 cells) for both YOLOV3 Tiny and YOLOV3
 # V3: input width and height of 512 (16x16 cells) for both YOLOV3 Tiny and YOLOV3
 # cleanup darknet download
-!rm -rf darknet
 # global variables
 TRAIN_LABELS_CSV_FILE="../input/stage_2_train_labels.csv"
 # pedantic nit: we are changing 'Target' to 'label' on the way in
@@ -53,8 +47,6 @@ labelsbboxdf[['bw', 'bh']].describe(percentiles=[0.25, 0.5, 0.75, .95])
 yolov3bboxesdf.describe(percentiles=[0.25, 0.5, 0.75, 0.85, .95])
 # we could hand-craft the following anchor boxes :
 # ~<min, ~<25%, ~<50%, ~<75%, ~<85%, ~<95% and have a 6 anchor box set (for yolov3 tiny)
-!printf '10,15, 75,75 100,125, 100,175 125,225, 150,275\n' > rsna-yolov3-manual-tiny-anchors.txt
-!cat rsna-yolov3-manual-tiny-anchors.txt
 # let's see what kmeans analysis gives us
 # convert to numpy array
 bboxarray=np.array(yolov3bboxesdf)
@@ -104,7 +96,6 @@ savedanchorsfilename='rsna-yolov3-kmeans-tiny-anchors.txt'
 with open(savedanchorsfilename,'w') as file:
     file.write(anchorrecord)
 file.close()
-!cat rsna-yolov3-kmeans-tiny-anchors.txt
 # fit to 9 kmeans clusters
 kmeans=MiniBatchKMeans(n_clusters=9, verbose=1)
 colors=['b.', 'g.', 'r.', 'c.', 'm.', 'y.', 'k.', 'w.', 'b.']
@@ -148,15 +139,15 @@ savedanchorsfilename='rsna-yolov3-kmeans-anchors.txt'
 with open(savedanchorsfilename,'w') as file:
     file.write(anchorrecord)
 file.close()
-!cat rsna-yolov3-kmeans-anchors.txt
+
 # everything together
 # print default yolov3-tiny anchors
-!grep anchors yolov3-tiny.cfg
+
 # print hand-crafted yolov3 tiny anchors
-!cat rsna-yolov3-manual-tiny-anchors.txt
+
 # print kmeans suggested yolov3 tiny anchors
-!cat rsna-yolov3-kmeans-tiny-anchors.txt
+
 # print default yolov3 anchors
-!grep anchors yolov3.cfg
+
 # print kmeans suggested yolov3 anchors
-!cat rsna-yolov3-kmeans-anchors.txt
+
